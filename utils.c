@@ -85,7 +85,11 @@ double log_gamma(double x)
 
 void make_directory(char* name)
 {
+#if _POSIX_C_SOURCE || __MACH__
     mkdir(name, S_IRUSR|S_IWUSR|S_IXUSR);
+#else
+    mkdir(name);
+#endif
 }
 
 

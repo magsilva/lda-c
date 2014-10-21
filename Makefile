@@ -19,15 +19,20 @@
 
 .SUFFIXES: .c .u
 CC= gcc
-CFLAGS= -O3 -Wall -g
+CFLAGS += -O3 -Wall
 LDFLAGS= -lm
+OUTPUT_FILE=lda
 
 LOBJECTS= lda-data.o lda-estimate.o lda-model.o lda-inference.o utils.o cokus.o lda-alpha.o
 
 LSOURCE= lda-data.c lda-estimate.c lda-model.c lda-inference.c utils.c cokus.c lda-alpha.c
 
 lda:	$(LOBJECTS)
-	$(CC) $(CFLAGS) $(LOBJECTS) -o lda $(LDFLAGS)
+	$(CC) $(CFLAGS) $(LOBJECTS) -o $(OUTPUT_FILE) $(LDFLAGS)
 
 clean:
 	-rm -f *.o
+
+distclean:
+	-rm -f $(OUTPUT_FILE)
+	-rm -f bin/*
